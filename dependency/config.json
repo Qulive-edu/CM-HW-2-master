@@ -1,5 +1,5 @@
 {
-    "visualizer_path" : "/home/qulive/Desktop/HW/Configuration management/CM-HW-2/dependency/plantuml-bsd-1.2024.7.jar",
+    "visualizer_path" : "/home/qulive/Downloads/CM-HW-2-master/dependency/plantuml-1.2024.7.jar",
     "package_name": "matplotlib",
     "max_depth" : 4,
     "repository_url" : "https://pypi.org/project/matplotlib/"
