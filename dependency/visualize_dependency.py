@@ -121,9 +121,6 @@ def main(config_path: str) -> None:
     
     visualize_graph(visualizer_path, commits_path)
     
-    
-    
-    
 
 
 if __name__ == "__main__":
