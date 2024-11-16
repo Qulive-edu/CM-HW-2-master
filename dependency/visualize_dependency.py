@@ -71,13 +71,13 @@ def generate_plantuml_script(graph: List[str]) -> str:
     plantuml_script = "@startuml\n"
     for relation in graph:
         s = relation.split()
-        if (len(s) == 3):
-            plantuml_script += "\"" f"{s[0]}" + "\"" + f"{s[1]}" + f"{s[2]}" + "\n"
+        if len(s) == 3:
+            plantuml_script += f'"{s[0]}" {s[1]} "{s[2]}"\n' 
         else:
-             plantuml_script += "\"" f"{s[0]}" + "\"" + "-->" + f"{s[1]}" + "\n"
-            
+            plantuml_script += f'"{s[0]}" --> "{s[1]}"\n' 
     plantuml_script += "@enduml"
     return plantuml_script
+
 
 
 def save_plantuml_script(script: str, output_path: str) -> None:
