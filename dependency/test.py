@@ -57,7 +57,7 @@ class TestDependencyVisualizer(unittest.TestCase):
 
     def test_generate_plantuml_script(self):
         result = generate_plantuml_script(['A --> B', 'C --> D'])
-        expected = '@startuml\n"A" --> "B"\n"C" --> "D"\n@enduml'
+        expected = '@startuml\n"A" --> B\n"C" --> D\n@enduml'
         self.assertEqual(result, expected)
 
     @patch('builtins.open', new_callable=mock_open)

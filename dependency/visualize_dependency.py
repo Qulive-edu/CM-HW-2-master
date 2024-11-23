@@ -6,8 +6,6 @@ from plantuml import PlantUML
 from os.path import abspath
 import git
 
-
-
 def parse_json_config(config_path: str) -> Dict[str, str]:
     with open(config_path, 'r') as j_file:
         config = json.load(j_file)
@@ -71,10 +69,17 @@ def generate_plantuml_script(graph: List[str]) -> str:
     plantuml_script = "@startuml\n"
     for relation in graph:
         s = relation.split()
-        if len(s) == 3:
-            plantuml_script += f'"{s[0]}" {s[1]} "{s[2]}"\n' 
-        else:
-            plantuml_script += f'"{s[0]}" --> "{s[1]}"\n' 
+        plantuml_script += f'"{s[0]}" {s[1]} {s[2]}\n' 
+    plantuml_script += "@enduml"
+    return plantuml_script
+
+def generate_plantuml_script_for_git(graph: List[str]) -> str:
+    plantuml_script = "@startuml\n"
+    prev = graph[0].split()[0]
+    for relation in graph:
+        s = relation.split()
+        plantuml_script += f'"{prev}" --> {s[2]}\n'
+        prev = s[2]; 
     plantuml_script += "@enduml"
     return plantuml_script
 
@@ -114,7 +119,7 @@ def main(config_path: str) -> None:
 
     visualize_graph(visualizer_path, script_path)
     
-    commits = generate_plantuml_script(get_git_commits())
+    commits = generate_plantuml_script_for_git(get_git_commits())
     
     commits_path = "/home/qulive/Downloads/CM-HW-2-master/dependency/commits.puml"
     save_plantuml_script(commits, commits_path)
